@@ -5,7 +5,7 @@ date: "9/24/2021"
 output: html_document
 ---
 
-```{r}
+```{r, message=FALSE}
 library(tidyverse)
 ```
 
@@ -18,14 +18,46 @@ a random sample of size 10 from a standard Normal distribution
 a logical vector indicating whether elements of the sample are greater than 0
 a character vector of length 10
 a factor vector of length 10, with 3 different factor “levels”
-Try to take the mean of each variable in your dataframe. What works and what doesn’t?
-
-Hint: to take the mean of a variable in a dataframe, you need to pull the variable out of the dataframe. Try loading the tidyverse and using the pull function.
 ```{r}
+set.seed(123)
+
 df = tibble(
-  sample = rnorm(10)
-  vec_logical = 
+  sample = rnorm(10),
+  vec_logical = sample > 0,
+  vec_char = c('A','B','C','D','E','F','G','H','I','J'), 
+  vec_factor = factor(c('1','2','3','1','2','3','1','2','3','1'))
 )
 ```
+Try to take the mean of each variable in your dataframe. What works and what doesn’t?
+Hint: to take the mean of a variable in a dataframe, you need to pull the variable out of the dataframe. Try loading the tidyverse and using the pull function.
+```{r}
+mean(pull(df, var = sample))
+mean(pull(df, var = vec_logical))
+mean(pull(df, var = vec_char))
+mean(pull(df, var = vec_factor))
+```
+We are able to take the mean of numeric and logical variable, but when taking the mean of logical variable, false is converted to 0 and true is converted to 1 and the mean of it is the sum of 0 and 1 over the length of the vector. We are not able to take the mean of character vector or the factor vector.   
+
 In some cases, you can explicitly convert variables from one type to another. Write a code chunk that applies the as.numeric function to the logical, character, and factor variables (please show this chunk but not the output). What happens, and why? Does this help explain what happens when you try to take the mean?
+```{r, eval = FALSE}
+as.numeric(pull(df, var = vec_logical))
+as.numeric(pull(df, var = vec_char))
+as.numeric(pull(df, var = vec_factor))
+```
+Logical variable was able to be converted to numeric variable which false was converted to 1 and true was converted to 0. Character variable was not able to be converted to numeric variable and we got NA for all the entries because it doesn't make sense to have numbers represent character variable. Factor variable was able to be converted to numeric variable indicating three levels. This helps explain why when we try to take the mean we were able to get result for logical variable but not for either character variable or factor variable. 
+
+
+### Problem 2
+```{r}
+data("penguins", package = "palmerpenguins")
+```
+
+The penguins dataset has `r ncol(penguins)` columns and `r nrow(penguins)` rows. This dataset contains information about `r names(penguins)` for each penguin. The mean flipper length is `r mean(pull(penguins, var = flipper_length_mm), na.rm = TRUE)` mm.
+
+```{r}
+ggplot(data = penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = species)) + geom_point() + 
+labs(title = "flipper length  vs. bill length for penguins", x = "bill length (mm)", y = "flipper length (mm)")
+
+ggsave('penguins scatterplot.png')
+```
 
