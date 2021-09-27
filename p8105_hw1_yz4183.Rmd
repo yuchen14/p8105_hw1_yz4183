@@ -1,0 +1,31 @@
+---
+title: "p8105_hw1_yz4183"
+author: "Yuchen Zheng"
+date: "9/24/2021"
+output: html_document
+---
+
+```{r}
+library(tidyverse)
+```
+
+### Problem 1
+This problem is intended to emphasize variable types and introduce coercion; some awareness of how R treats numeric, character, and factor variables is necessary for working with these data types in practice.  
+
+Create a data frame comprised of:   
+
+a random sample of size 10 from a standard Normal distribution
+a logical vector indicating whether elements of the sample are greater than 0
+a character vector of length 10
+a factor vector of length 10, with 3 different factor “levels”
+Try to take the mean of each variable in your dataframe. What works and what doesn’t?
+
+Hint: to take the mean of a variable in a dataframe, you need to pull the variable out of the dataframe. Try loading the tidyverse and using the pull function.
+```{r}
+df = tibble(
+  sample = rnorm(10)
+  vec_logical = 
+)
+```
+In some cases, you can explicitly convert variables from one type to another. Write a code chunk that applies the as.numeric function to the logical, character, and factor variables (please show this chunk but not the output). What happens, and why? Does this help explain what happens when you try to take the mean?
+
