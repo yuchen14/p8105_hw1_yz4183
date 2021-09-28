@@ -27,6 +27,8 @@ df = tibble(
   vec_char = c('A','B','C','D','E','F','G','H','I','J'), 
   vec_factor = factor(c('1','2','3','1','2','3','1','2','3','1'))
 )
+
+df
 ```
 Try to take the mean of each variable in your dataframe. What works and what doesn’t?
 Hint: to take the mean of a variable in a dataframe, you need to pull the variable out of the dataframe. Try loading the tidyverse and using the pull function.

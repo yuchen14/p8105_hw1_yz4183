@@ -184,7 +184,22 @@ df = tibble(
   vec_logical = sample &gt; 0,
   vec_char = c(&#39;A&#39;,&#39;B&#39;,&#39;C&#39;,&#39;D&#39;,&#39;E&#39;,&#39;F&#39;,&#39;G&#39;,&#39;H&#39;,&#39;I&#39;,&#39;J&#39;), 
   vec_factor = factor(c(&#39;1&#39;,&#39;2&#39;,&#39;3&#39;,&#39;1&#39;,&#39;2&#39;,&#39;3&#39;,&#39;1&#39;,&#39;2&#39;,&#39;3&#39;,&#39;1&#39;))
-)</code></pre>
+)
+
+df</code></pre>
+<pre><code>## # A tibble: 10 × 4
+##     sample vec_logical vec_char vec_factor
+##      &lt;dbl&gt; &lt;lgl&gt;       &lt;chr&gt;    &lt;fct&gt;     
+##  1 -0.560  FALSE       A        1         
+##  2 -0.230  FALSE       B        2         
+##  3  1.56   TRUE        C        3         
+##  4  0.0705 TRUE        D        1         
+##  5  0.129  TRUE        E        2         
+##  6  1.72   TRUE        F        3         
+##  7  0.461  TRUE        G        1         
+##  8 -1.27   FALSE       H        2         
+##  9 -0.687  FALSE       I        3         
+## 10 -0.446  FALSE       J        1</code></pre>
 <p>Try to take the mean of each variable in your dataframe. What works and what doesn’t? Hint: to take the mean of a variable in a dataframe, you need to pull the variable out of the dataframe. Try loading the tidyverse and using the pull function.</p>
 <pre class="r"><code>mean(pull(df, var = sample))</code></pre>
 <pre><code>## [1] 0.07462564</code></pre>
